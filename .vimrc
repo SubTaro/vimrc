@@ -19,6 +19,9 @@ inoremap "" ""<ESC>a
 inoremap ' ''<ESC>i
 inoremap '' ''<ESC>a
 
+nnoremap <silent> J :bprev<CR>
+nnoremap <silent> K :bnext<CR>
+
 inoremap <silent> jj <ESC>
 " 補完表示時のEnterで改行をしない
 inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
@@ -47,6 +50,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'lambdalisue/fern.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
+Plug 'tpope/vim-surround'
+Plug 'joshdick/onedark.vim'
 Plug 'haishanh/night-owl.vim'
 
 " Initialize plugin system
@@ -74,11 +79,16 @@ if executable('pyls')
 								\ })
 endif
 
-" ngiht-owlの設定
+" night-owlの設定
+if (has("termguicolors"))
+	set termguicolors
+endif
+
 syntax enable
 colorscheme night-owl
 
 let g:lightline = {'colorscheme': 'nightowl'}
+let g:airline#extensions#tabline#enabled = 1
 
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
